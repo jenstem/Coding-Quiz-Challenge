@@ -15,6 +15,12 @@ h2 {
     text-align: center;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
 h3 {
     font-size: 16px;
     color:  red;
