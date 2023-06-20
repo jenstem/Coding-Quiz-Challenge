@@ -35,3 +35,13 @@ button {
     align-items: center;
     border-radius: 5px;
 }
+
+.center-button {
+    display: inline-block;
+    margin: 15px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
