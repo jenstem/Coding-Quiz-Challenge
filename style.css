@@ -8,3 +8,9 @@ h1 {
     font-weight: bolder;
     text-align: center;
 }
+
+h2 {
+    color: grey;
+    font-size: 20px;
+    text-align: center;
+}
