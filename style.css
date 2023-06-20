@@ -25,3 +25,13 @@ p {
     font-size: 20px;
     text-align: center;
 }
+
+button {
+    background-color: purple;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    align-items: center;
+    border-radius: 5px;
+}
