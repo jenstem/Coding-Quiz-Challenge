@@ -61,9 +61,9 @@ var starting = function() {
 }
 // questions one at a time
 var showQuestions = function() {
-    askQuestion = // put variable or array holding ?'s here
-    for (let index = 0; index < array.length; index++) {
-        var answerButton = array[index]
+    askQuestion = index.fiveQuestions
+    for (let index = 0; index < fiveQuestions.length; index++) {
+        var answerButton = fiveQuestions[index]
         answerButton.addEventListener("click", maybeAnswer);
     }
 }
