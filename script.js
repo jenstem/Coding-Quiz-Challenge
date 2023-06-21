@@ -1,3 +1,5 @@
+// variables
+
 // variable for questions
 
 // questions 1 - 5
