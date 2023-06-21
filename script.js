@@ -33,6 +33,7 @@ var goBackButton = document.querySelector(".goback-button");
 var clearScoresButton = document.querySelector("clear-scores");
 // variable for questions
 
+var fiveQuestions = [ ];
 // questions 1 - 5
 
 // answers 1 - 5
@@ -55,7 +56,26 @@ var startTime = function() {
 // starting game function
 
 // questions one at a time
+var showQuestions = function() {
+    askQuestion = // put variable or array holding ?'s here
+    for (let index = 0; index < array.length; index++) {
+        var answerButton = array[index]
+        answerButton.addEventListener("click", maybeAnswer);
+    }
+}
 
+var maybeAnswer = function(e) {
+    var usersPick = e.target
+    if (fiveQuestions === maybeAnswer) {
+        userCorrect()
+        score = score + 4
+    }
+    else {
+        userIncorrect()
+        score = score - 4;
+        timerCount = timerCount - 15;
+    };
+}
 // keeping score
 
 // show score
