@@ -30,7 +30,7 @@ var highScoresList = [];
 // go back button
 var goBackButton = document.querySelector(".goback-button");
 // clear scores button
-var clearScoresButton = document.querySelector("clear-scores");
+var clearScoresButton = document.querySelector(".clear-scores");
 // variable for questions
 
 var fiveQuestions = [ ];
@@ -43,12 +43,14 @@ var fiveQuestions = [ ];
 // timer function
 var startTime = function() {
     timerCount = 60;
-    var gameTimer = setInterval(function() {
+    var timerTime = setInterval(function() {
         timerCount--
-        if (timerCount === 0) {
-            clearInterval()}
+        if (endOfGame) {
+            clearInterval(timerTime)}
         if (timerCount < 0) {
-                return score();
+                score()
+                gameTimer.innerText = 0
+                clearInterval(timerTime)
     }
         }, 1000)
     }
