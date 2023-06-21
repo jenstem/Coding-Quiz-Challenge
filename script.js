@@ -108,6 +108,10 @@ var saveScore = function () {
 
  addHighScore();
  boardHighScore();
+
+ var addHighScore = function () {
+    localStorage.setItem("Highscores", JSON.stringify(Highscores))
+ }
 // go back
 
 // clear highscores
