@@ -32,6 +32,8 @@
 
 // timer function
 
+// starting game function
+
 // keeping score
 
 // show score
