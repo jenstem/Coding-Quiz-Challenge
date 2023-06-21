@@ -26,7 +26,7 @@ var endOfGame;
 var getInitials = document.querySelector(".get-initials");
 // highscores var
 var highScores = document.querySelector(".highscores");
-var highScoresList = "";
+var highScoresList = [];
 // go back button
 var goBackButton = document.querySelector(".goback-button");
 // clear scores button
@@ -100,7 +100,14 @@ var saveScore = function () {
 }
 
 // put highscores in order
+ highScoresList.push(highScores);
+ highScoresList.sort(a, b);
+ while (highScores.append) {
+    highScores.remove(highScores.index(0));
+ }
 
+ addHighScore();
+ boardHighScore();
 // go back
 
 // clear highscores
