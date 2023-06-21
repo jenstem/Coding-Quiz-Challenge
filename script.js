@@ -95,6 +95,9 @@ var boardHighScore = function(e) {
       }
 }
 // submit
+var saveScore = function () {
+    localStorage.setItem("Highscores", JSON.stringify(Highscores))
+}
 
 // put highscores in order
 
