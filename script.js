@@ -33,7 +33,19 @@ var goBackButton = document.querySelector(".goback-button");
 var clearScoresButton = document.querySelector(".clear-scores");
 // variable for questions
 
-var fiveQuestions = [ ];
+var fiveQuestions = {
+    'Commonly used data types DO NOT include:':['a. strings', 'b. booleans', 'c. alerts', 'd. numbers', 2],
+
+    'The condition in an if / else statement is enclosed within ____.':['a. quotes', 'b. curly brackets', 'c. parentheses', 'd. square brackets', 1],
+
+    'Which HTML element can we put our JavaScript?':['a. <header>', 'b. <footer>', 'c. <div>', 'd. <script>', 3],
+
+    'Using JavaScript, how would you create a function?':['a. function.myFunction()', 'b. function = myFunction()', 'c. function = Myfunction()', 'd. function callMyFunction()', 1],
+
+    'How should you leave a comment in a JavaScript file?':['a. <comment>', 'b. "Comment"', 'c. <!--Comment-->', 'd. // Comment', 3]
+};
+
+
 // questions 1 - 5
 
 // answers 1 - 5
