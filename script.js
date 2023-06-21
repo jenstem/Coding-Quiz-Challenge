@@ -112,6 +112,22 @@ var saveScore = function () {
  var addHighScore = function () {
     localStorage.setItem("Highscores", JSON.stringify(Highscores))
  }
+
+ var showHighScore = function () {
+    var showingHighScore = localStorage.getItem("Highscores")
+      if (!showingHighScore) {
+        return false;
+      }
+
+showingHighScore = JSON.parse(showHighScore);
+showingHighScore.sort(a, b)
+  for (let index = 0; index < showingHighScore.length; index++) {
+    var nowHighScore = document.createElement("li");
+        nowHighScore.className = ".nowHighScore";
+
+
+  }
+ }
 // go back
 
 // clear highscores
