@@ -14,8 +14,8 @@
   <body>
 <!-- Header with Highscores and Timer -->
 <header>
-<h3>View highscores</h3>
-<h3>Time: </h3>
+<h3 class="highscores">View highscores</h3>
+<h3 class="game-timer">Time: </h3>
 </header>
     <main>
 
@@ -26,28 +26,28 @@
 
 <!-- Start Quiz Button -->
 <div class="center">
-<button class="center-button">Start Quiz</button>
+<button class="center-button start-button">Start Quiz</button>
 </div>
 </div>
 
 <!-- Questions -->
-<div class="questions"></div>
+<div class="questions ask-question"></div>
 
 <!-- Answers -->
-<div class="answers"></div>
+<div class="answers user-answer answer-button"></div>
 
 <!-- Correct or Incorrect -->
-<div>
+<div class="correct">
 <h2>Correct!</h2>
 </div>
 
-<div>
+<div class="incorrect">
 <h2>Incorrect!</h2>
 </div>
 
 <!-- Highscore Page -->
 
-<div>
+<div class="highscores">
     <h1>Highscores</h1>
 </div>
 
@@ -55,14 +55,14 @@
 <div>
 <form>
     <p> Enter initials:
-    <input type="text"/>
+    <input type="text" class=get-initials""/>
     <button type="submit">Submit</button> </p>
 </form>
 </div>
 
     <div class="center">
-    <button class="center-button">Go back</button>
-    <button class="center-button">Clear Highscores</button>
+    <button class="center-button goback-button">Go back</button>
+    <button class="center-button clear-scores">Clear Highscores</button>
     </div>
 
      </main>
