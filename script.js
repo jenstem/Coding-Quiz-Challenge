@@ -40,8 +40,21 @@ var clearScoresButton = document.querySelector("clear-scores");
 // when to show correct and incorrect
 
 // timer function
+var startTime = function() {
+    timerCount = 60;
+    var gameTimer = setInterval(function() {
+        timerCount--
+        if (timerCount === 0) {
+            clearInterval()}
+        if (timerCount < 0) {
+                return score();
+    }
+        }, 1000)
+    }
 
 // starting game function
+
+// questions one at a time
 
 // keeping score
 
