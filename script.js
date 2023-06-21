@@ -55,8 +55,10 @@ var startTime = function() {
         }, 1000)
     }
 
-// starting game function
-
+// starting game function - needs work
+var starting = function() {
+    startTime()
+}
 // questions one at a time
 var showQuestions = function() {
     askQuestion = // put variable or array holding ?'s here
