@@ -78,8 +78,13 @@ var maybeAnswer = function(e) {
 }
 // keeping score
 
-// show score
+// display score
+var displayScore = function() {
 
+    var scoreBoard = document.createElement("p");
+      scoreBoard.innerText = ("All done! Your final score is " + score + ".");
+      userAnswer.append(scoreBoard);
+}
 // highscores
 
 // submit
