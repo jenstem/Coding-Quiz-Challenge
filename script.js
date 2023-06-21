@@ -86,7 +86,14 @@ var displayScore = function() {
       userAnswer.append(scoreBoard);
 }
 // highscores
+var boardHighScore = function(e) {
 
+    var usersInitials = document.querySelector(".initials").value;
+      if (!usersInitials) {
+        window.alert("Please enter your initials:");
+        return;
+      }
+}
 // submit
 
 // put highscores in order
