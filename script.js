@@ -123,7 +123,7 @@ var starting = function() {
 }
 
 var ending = function() {
-  endArea.style.display = "none";
+    // endArea.style.display = "none";
     saveScore();
     displayScore();
     showHighScore();
@@ -203,7 +203,9 @@ var handleAnswer = function(e) {
       highScoreArea.style.display = 'block'
       console.log("end quiz");
       stopTimer();
-      // ending();
+      console.log("hi");
+      ending();
+      console.log("bye");
     } else {
       displayQuestions();
     }
@@ -228,11 +230,11 @@ var displayScore = function() {
 highScores.addEventListener("click", displayHighScores)
 var boardHighScore = function() {
     var usersInitials = document.querySelector(".initials").value;
-      if (!usersInitials) {
-        window.alert("Please enter your initials:");
-        return;
+      // if (!usersInitials) {
+      //   window.alert("Please enter your initials:");
+        // return;
       }
-}
+// }
 
 // doesn't kow when program is over, tell it to stop
 // submit - submit to high-score-area?
