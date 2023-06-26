@@ -121,11 +121,12 @@ var starting = function() {
     displayQuestions();
 }
 
-// var ending = function() {
-//   // endArea.style.display = "none";
-//     displayScore();
-//     boardHighScore();
-// }
+var ending = function() {
+  endArea.innerHTML = "";
+  endArea.style.display = "none";
+    displayScore();
+    boardHighScore();
+}
 
 // when to show correct and incorrect - not sure  set display to none and then change
 
@@ -216,7 +217,7 @@ var handleAnswer = function(e) {
 // display score
 var displayScore = function() {
     var scoreBoard = document.createElement("p");
-      scoreBoard.innerText = ("All done! Your final score is " + score + ".");
+      scoreBoard.textContent = ("All done! Your final score is " + score + ".");
       userAnswer.append(scoreBoard);
 }
 // highscores
@@ -286,3 +287,5 @@ var clear = function() {
 
 startButton.addEventListener("click", starting)
 questionArea.addEventListener("click", handleAnswer)
+getInitials.addEventListener("submit", boardHighScore)
+endArea.addEventListener("click", ending)
