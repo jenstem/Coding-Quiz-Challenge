@@ -124,8 +124,8 @@ var starting = function() {
 
 var ending = function() {
     // endArea.style.display = "none";
-    saveScore();
-    // displayScore();
+    // saveScore();
+    displayScore();
     // showHighScore();
     // boardHighScore();
 }
@@ -237,9 +237,23 @@ var boardHighScore = function() {
 // submit - submit to high-score-area?
 // getInitials.addEventListener("submit", )
 
-var saveScore = function() {
+// var saveScore = function() {
+//     localStorage.setItem("highScores", JSON.stringify(highScores))
+// }
+
+function saveScore() {
+  // console.log(highScores);
+  var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
+      var newScore = {
+        score: gameTimer,
+        initials: getInitials,
+      };
+      highScores.push(newScore);
     localStorage.setItem("highScores", JSON.stringify(highScores))
+
 }
+
+getInitials.addEventListener('click', saveScore)
 
 // put highscores in order
 //  highScoresList.push(highScores);
@@ -290,5 +304,6 @@ var clear = function() {
 
 startButton.addEventListener("click", starting)
 questionArea.addEventListener("click", handleAnswer)
+// intBtn.addEventListener('click', saveScore)
 // getInitials.addEventListener("submit", boardHighScore)
 // endArea.addEventListener("click", ending)
