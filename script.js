@@ -22,6 +22,7 @@ var correctAnswer = document.querySelector(".correct");
 var endGame = document.querySelector(".end-game");
 // initials var
 var getInitials = document.querySelector(".get-initials");
+var intBtn = document.querySelector(".int-button");
 // highscores var - do I need both of these?
 var highScoresList = document.querySelector(".high-score-list")
 var highScores = document.querySelector(".highscores");
@@ -250,10 +251,9 @@ function saveScore() {
       };
       highScores.push(newScore);
     localStorage.setItem("highScores", JSON.stringify(highScores))
-
 }
+intBtn.addEventListener('click', saveScore)
 
-getInitials.addEventListener('click', saveScore)
 
 // put highscores in order
 //  highScoresList.push(highScores);
