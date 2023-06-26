@@ -239,7 +239,7 @@ var boardHighScore = function() {
 // getInitials.addEventListener("submit", )
 
 var saveScore = function() {
-    localStorage.setItem("highsSores", JSON.stringify(highScores))
+    localStorage.setItem("highsScores", JSON.stringify(highScores))
 }
 
 // put highscores in order
