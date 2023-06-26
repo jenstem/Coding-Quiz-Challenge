@@ -3,6 +3,7 @@ var questionArea = document.querySelector(".question-area");
 var startArea = document.querySelector(".start-area");
 var endArea = document.querySelector(".end-area")
 var highScoreArea = document.querySelector(".highscore-area")
+highScoreArea.style.display = "none"
 // click start button var
 var startButton = document.querySelector(".start-button");
 // timer var
@@ -122,7 +123,6 @@ var starting = function() {
 }
 
 var ending = function() {
-  // endArea.innerHTML = "";
   endArea.style.display = "none";
     saveScore();
     displayScore();
@@ -199,6 +199,8 @@ var handleAnswer = function(e) {
     }
     questionIndex++;
     if (questionIndex === fiveQuestions.length) {
+      questionArea.style.display = 'none'
+      highScoreArea.style.display = 'block'
       console.log("end quiz");
       stopTimer();
       // ending();
@@ -237,7 +239,7 @@ var boardHighScore = function() {
 // getInitials.addEventListener("submit", )
 
 var saveScore = function() {
-    localStorage.setItem("Highscores", JSON.stringify(Highscores))
+    localStorage.setItem("highsSores", JSON.stringify(highScores))
 }
 
 // put highscores in order
@@ -251,11 +253,11 @@ var saveScore = function() {
 //  boardHighScore();
 
 //  var addHighScore = function() {
-//     localStorage.setItem("Highscores", JSON.stringify(highScores))
+//     localStorage.setItem("highScores", JSON.stringify(highScores))
 //  }
 
  function showHighScore() {
-    var showingHighScore = localStorage.getItem("Highscores");
+    var showingHighScore = localStorage.getItem("highScores");
     if (!showingHighScore) {
         return false;
     }
