@@ -22,7 +22,7 @@ var endGame = document.querySelector(".end-game");
 // initials var
 var getInitials = document.querySelector(".get-initials");
 // highscores var - do I need both of these?
-var highScoresList = document.getElementById(".high-score-list")
+var highScoresList = document.querySelector(".high-score-list")
 var highScores = document.querySelector(".highscores");
 // go back button
 var goBackButton = document.querySelector(".goback-button");
