@@ -1,271 +1,294 @@
-var questionArea = document.getElementById("question-area");
-var startArea = document.getElementById("start-area");
-var endArea = document.getElementById("end-area");
-var scoreArea = document.getElementById("answer");
-var getInitials = document.getElementById("get-initials");
-var showHighscore = document.getElementById("show-highscore");
-var scoreBoard = document.getElementById("score-board");
-var correctAnswer = document.getElementById("correct");
-var incorrectAnswer = document.getElementById("incorrect");
-// change start-button
-var startButton = document.querySelector("#startingbutton");
-var goBackButton = document.querySelector("#goback");
-var clearButton = document.querySelector("#clear-score");
-var askQuestions = document.getElementById("question");
-var answerButton = document.getElementById("a-button");
-var getTime = document.querySelector("#get-time");
+// variables
+var questionArea = document.querySelector(".question-area");
+var startArea = document.querySelector(".start-area");
+var endArea = document.querySelector(".end-area")
+var highScoreArea = document.querySelector(".highscore-area")
+highScoreArea.style.display = "none"
+// click start button var
+var startButton = document.querySelector(".start-button");
+// timer var
+var gameTimer = document.querySelector(".game-timer");
+// question var
+var askQuestion = document.querySelector(".ask-question");
+// answer var
+var userAnswer = document.querySelector(".user-answer");
+// answer buttons
+var answerButton = document.querySelector(".answer-button");
+// incorrect answer var
+var incorrectAnswer = document.querySelector(".incorrect");
+// correct answer var
+var correctAnswer = document.querySelector(".correct");
+// end of game var
+var endGame = document.querySelector(".end-game");
+// initials var
+var getInitials = document.querySelector(".get-initials");
+// highscores var - do I need both of these?
+var highScoresList = document.querySelector(".high-score-list")
+var highScores = document.querySelector(".highscores");
+// go back button
+var goBackButton = document.querySelector(".goback-button");
+// clear scores button
+var clearScoresButton = document.querySelector(".clear-scores");
+// submit button
+var submitButton = document.querySelector(".submit-button");
 
+// other variables
+
+var gameTimer = 0;
 var score = 0;
-var timerCount;
+// do I need timerCount and gameTimer?
+var timerCountEl = document.querySelector("#game-timer");
 var endOfGame;
-getTime.textContent = 0;
-var storeScores = [];
+// do I need both of these for highscore?
+var highScoresArr = [];
+var highScoresList = [];
 var questionIndex = 0;
 
-var fiveQuestions = [
-    {
-        quest:"Commonly used data types DO NOT include:",
-        options: [{option: 'a. strings'}, {option: 'b. booleans'}, {option: 'c. alerts'}, {option: 'd. numbers'}],
-        answ: 'c. alerts'},
-        {quest:"The condition in an if / else statement is enclosed within ____.",
-        options: [{option: 'a. quotes'}, {option: 'b. curly brackets'}, {option: 'c. parentheses'}, {option: 'd. square brackets'}],
-        answ: 'b. curly brackets"'},
-        {quest:"Which HTML element can we put our JavaScript?",
-        options: [{option: 'a. <header>'}, {option: 'b. <footer>'}, {option: 'c. <div>'}, {option: '<script>'}],
-        answ: 'd. <script>'},
-        {quest:"Using JavaScript, how would you create a function?",
-        options: [{option: 'a. function.myFunction()'}, {option: 'b. function = myFunction()'}, {option: 'c. function = Myfunction()'}, {option: 'd. function callMyFunction()'}],
-        answ: 'b. function = myFunction()'},
-        {quest:"How should you leave a comment in a JavaScript file?",
-        options: [{option: 'a. <comment>'}, {option: 'b. Comment'}, {option: 'c. <!--Comment-->'}, {option: 'd. // Comment'}],
-        answ: '1'},
+// variable for questions
+
+var fiveQuestions = [{
+
+    question: "Commonly used data types DO NOT include:",
+    options:[
+    "a. strings",
+    "b. booleans",
+    "c. alerts",
+    "d. numbers"],
+    correctAnswer: "c. alerts"},
+
+{
+    question: "The condition in an if / else statement is enclosed within ____.",
+    options:[
+     "a. quotes",
+    "b. curly brackets",
+    "c. parentheses",
+    "d. square brackets"],
+    correctAnswer: "b. curly brackets"},
+
+{
+    question: "Which HTML element can we put our JavaScript?",
+    options:[
+    "a. <header>",
+    "b. <footer>",
+    "c. <div>",
+    "d. <script>"],
+    correctAnswer: "d. <script>"},
+
+{
+    question: "Using JavaScript, how would you create a function?",
+    options:[
+    "a. function.myFunction()",
+    "b. function = myFunction()",
+    "c. function = Myfunction()",
+    "d. function callMyFunction()"],
+    correctAnswer: "b. function = myFunction()"},
+
+{
+    question: "How should you leave a comment in a JavaScript file?",
+    options:[
+    "a. <comment>",
+    "b. Comment",
+    "c. <!--Comment-->",
+    "d. // Comment"],
+    correctAnswer: "d. // Comment"}
 ];
+var timerTime = null;
 
-//Go back on Score Page
-var createStart = function () {
-    highscoreArea.classList.add("hidden")
-    highscoreArea.classList.remove("show")
-    startArea.classList.remove("hide")
-    startArea.classList.add("show")
-    scoreArea.removeChild(containerScoreEl.lastChild)
-    questionIndex = 0
-    endOfGame = ""
-    getTime.textContent = 0
-    score = 0
-    if (correctAnswer.className = ("show")) {
-    correctAnswer.classList.remove("show");
-    correctAnswer.classList.add("hidden")
-}
-    if (incorrectAnswer.className = ("show")) {
-    incorrectAnswer.classList.remove("show");
-    incorrectAnswer.classList.add("hidden");
-}
+var stopTimer = function() {
+  clearInterval(timerTime);
 }
 
-//Start quiz at 60
-var timerEl = function () {
+// timer function - does startTime need to be above line 92?
+var startTime = function() {
     timerCount = 60;
-var secondsLeft = setInterval(function() {
-    getTime.textContent = timerCount;
-    timerCount--
-    if (endOfGame) {
-    clearInterval(secondsLeft)}
-    if (timerCount < 0) {
-    displayScore()
-    getTime.textContent = 0
-    clearInterval(secondsLeft)
-    }
+    timerTime = setInterval(function() {
+    timerCountEl.textContent = timerCount;
+      timerCount--
+    if (timerCount === -1) {
+      stopTimer();}
+    // if (timerCount < 0) {
+    //   score()
+    //   timerCount.innerText = 0
+    //   clearInterval(timerTime)
+    // }
 
     }, 1000)
 }
 
-//Start Quiz and shuffles questions
-var starter = function() {
-    startArea.classList.add('hidden');
-    startArea.classList.remove('show');
-    questionArea.classList.remove('hidden');
-    questionArea.classList.add('show');
-    timerEl()
-    questionList()
+// starting game function - needs work
+var starting = function() {
+    startArea.style.display = "none";
+    startTime();
+    displayQuestions();
 }
 
-//Quiz order
-var questionList = function() {
-    clearAnswers()
-    showQuestions(questionIndex)
+var ending = function() {
+    // endArea.style.display = "none";
+    saveScore();
+    // displayScore();
+    // showHighScore();
+    // boardHighScore();
 }
 
-//Remove answer buttons
-var clearAnswers = function() {
-    while (answerButton.firstChild) {
-    answerButton.removeChild(answerButton.firstChild)
-}
-};
+// when to show correct and incorrect - not sure  set display to none and then change
 
-//display Questions
-var showQuestions = function(index) {
-    askQuestions.innerText = index.quest
-    for (var i = 0; i < index.options.length; i++) {
-var answeroptions = document.createElement('button');
-    answeroptions.innerText = index.options[i].option
-    answeroptions.classList.add('button')
-    // maybe change answer-button to ansbtn?
-    answeroptions.classList.add('ansbtn')
-    answeroptions.addEventListener("click", maybeAnswer)
-    answerButton.appendChild(answeroptions)
-}
-};
+// var answerCorrect = function() {
 
-//To display Correct
-var correctAnswerEl = function() {
-    if (correctAnswer.className = ("hidden")) {
-    correctAnswer.classList.remove("hidden")
-    correctAnswer.classList.add("banner")
-    incorrectAnswer.classList.remove("banner")
-    incorrectAnswer.classList.add("hidden")
-    }
-    }
+// }
 
-    ///To display incorrect
-var incorrectAnswerEl = function() {
-    if (incorrectAnswer.className = ("hidden")) {
-    incorrectAnswer.classList.remove("hidden")
-    incorrectAnswer.classList.add("banner")
-    correctAnswer.classList.remove("banner")
-    correctAnswer.classList.add("hidden")
-}
-}
+// var answerIncorrect = function() {
 
-//Answer Check
+// }
+
+// check to see if answer is correct - why is correctAnswer wrong?
+
 var maybeAnswer = function(e) {
-    var userOption = e.target
-    if ([QuestionIndex].answ === userOption.textContent){
-    correctAnswerEl()
-    score = score + 4
-}
-    else {
-    incorrectAnswerEl()
-    score = score - 4;
-    timeleft = timeleft - 15;
-}
-
-//Questions order
-questionIndex++
-    if  (questionIndex.length > questionIndex + 1) {
-    questionList()
+  var selectedOption = e.target
+  console.log(selectedOption, correctAnswer);
+    if (correctAnswer === selectedOption) {
+      answerCorrect()
+      score = score + 4
     }
     else {
-    endOfGame = "true";
-    displayScore();
+        answerIncorrect()
+        score = score - 4;
+        timerCount = timerCount - 15;
+    }
+};
+
+// decrease timer incorrect answer X
+// timer needs to stop when quiz ends X
+// display something that let's user know quiz has ended
+// populate get initials
+// populate high score
+// display incorrect/correct
+
+// display questions one at a time - not sure on this
+// var displayQuestions = function() {
+//     askQuestion = index.fiveQuestions
+//     for (let index = 0; index < fiveQuestions.length; index++) {
+//         var answerButton = fiveQuestions[index]
+//         answerButton.addEventListener("click", maybeAnswer);
+//     }
+// }
+// }
+
+var displayQuestions = function() {
+    questionArea.innerHTML = "";
+  var questionEl = document.createElement("p");
+   questionEl.textContent = fiveQuestions[questionIndex].question;
+    questionArea.append(questionEl);
+      for (let index = 0; index < fiveQuestions[questionIndex].options.length; index++) {
+        var choiceButton = document.createElement("button");
+          choiceButton.style.display = "block";
+          choiceButton.textContent = fiveQuestions[questionIndex].options[index];
+          questionArea.append(choiceButton);
     }
 }
 
-//Show score
-var displayScore = function () {
-    questionArea.classList.add("hidden");
-    endArea.classList.remove("hidden");
-    endArea.classList.add("show");
-var scoreBoardList = document.createElement("p");
-    scoreBoardList.textContent = ("Your final score is " + score + "!");
-    scoreArea.appendChild(scoreBoardList);
+var handleAnswer = function(e) {
+  if (e.target.tagName === "BUTTON") {
+    if (e.target.textContent === fiveQuestions[questionIndex].correctAnswer) {
+        score = score + 4
+        console.log("correct");
+    } else {
+        score = score - 4;
+        timerCount = timerCount - 15;
+        console.log("incorrect");
+
+    }
+    questionIndex++;
+    if (questionIndex === fiveQuestions.length) {
+      questionArea.style.display = 'none'
+      highScoreArea.style.display = 'block'
+      stopTimer();
+      ending();
+      getInitials.addEventListener("submit", boardHighScore)
+    } else {
+      displayQuestions();
+    }
+    // displayQuestions();
+  }
 }
 
-//High Score
-var startHighscore = function(e) {
-    e.preventDefault()
-var initials = document.querySelector("#initials").value;
-    if (!initials) {
-    alert("Please enter your intials:");
-    return;
+
+// doesn't know when program is over, tell it to stop
+
+// when it hits 5, end it, end of array or time = 0, QI = length of array - stop 175, 176
+
+// keeping score
+
+// display score
+var displayScore = function() {
+    var scoreBoard = document.createElement("p");
+      scoreBoard.textContent = ("All done! Your final score is " + score + ".");
+      userAnswer.append(scoreBoard);
 }
-getInitials.reset();
-var storeScoreEl = {
-    initials: initials,
-    score: score
+// highscores
+highScores.addEventListener("click", displayHighScores)
+var boardHighScore = function() {
+    var usersInitials = document.querySelector(".initials").value;
+      // if (!usersInitials) {
+      //   window.alert("Please enter your initials:");
+        // return;
+      }
+
+// doesn't kow when program is over, tell it to stop
+// submit - submit to high-score-area?
+// getInitials.addEventListener("submit", )
+
+var saveScore = function() {
+    localStorage.setItem("highScores", JSON.stringify(highScores))
 }
 
-//Sort Score
-storeScores.push(storeScoreEl);
-storeScores.sort((a, b) => {return b.score-a.score});
-while (scoreBoard.firstChild) {
-scoreBoard.removeChild(scoreBoard.firstChild)
-}
-for (var i = 0; i < storeScores.length; i++) {
-var scoreBoardEl = document.createElement("li");
-scoreBoardEl.ClassName = "highscore";
-scoreBoardEl.innerHTML = storeScores[i].initials + " - " + storeScores[i].score;
-scoreBoard.appendChild(scoreBoardEl);
-}
-listHighscore();
-showScores();
-}
+// put highscores in order
+//  highScoresList.push(highScores);
+// //  highScoresList.sort(a, b);
+//  while (highScores.append) {
+//     highScores.remove(highScores.index(0));
+//  }
 
-//Save high score
-var listHighscore = function () {
-    localStorage.setItem("storeScores", JSON.stringify(storeScores))
-}
+//  addHighScore();
+//  boardHighScore();
 
-//Load high schore
-var highscoreListEl = function () {
-    var highscoreList = localStorage.getItem("storeScores")
-        if (!highscoreList) {
+//  var addHighScore = function() {
+//     localStorage.setItem("highScores", JSON.stringify(highScores))
+//  }
+
+ function showHighScore() {
+    var showingHighScore = localStorage.getItem("highScores");
+    if (!showingHighScore) {
         return false;
     }
 
-highscoreList = JSON.parse(highscoreList);
-highscoreList.sort((a, b) => {return b.score-a.score})
- for (var i = 0; i < highscoreList.length; i++) {
-var scoreBoardEl = document.createElement("li");
-    scoreBoardEl.ClassName = "highscore";
-    scoreBoardEl.textContent = highscoreList[i].initials + " - " + hgihscoreList[i].score;
-    scoreBoard.appendChild(scoreBoardEl);
-    storeScores.push(highscoreList[i]);
-}
-}
+    showingHighScore = JSON.parse(showHighScore);
+    showingHighScore.sort(a, b);
+    for (let index = 0; index < showingHighScore.length; index++) {
+        var nowHighScore = document.createElement("li");
+        nowHighScore.className = ".nowHighScore";
 
-var delScoreBoard = function () {
-    storeScores = [];
-    while (scoreBoard.firstChild) {
-    scoreBoard.removeChild(scoreBoard.firstChild);
+
+    }
 }
-    localStorage.clear(storeScores);
-}
-
-highscoreListEl()
-
-//Event listeners-Click* to Start Game
-startButton.addEventListener("click", starter)
-//*Go back
-goBackButton.addEventListener("click", createStart)
-//*Submit button
-getInitials.addEventListener("submit", startHighscore)
-//*High scores
-showHighscore.addEventListener("click", showScores)
-
-var showScores = function() {
-    highscoreArea.classList.remove("hidden");
-    highscoreArea.classList.add("show");
+// at some point you need to end the game - maybe this?
+var displayHighScores = function() {
     endOfGame = "true"
+}
 
-//To show right or wrong
-if (endArea.className = ("show")) {
-    endArea.classList.remove("show");
-    endArea.classList.add("hidden");
+// go back - needs work - go back to start-area?
+goBackButton.addEventListener("click", starting)
+
+// clear highscores - needs work
+// clearScoresButton.addEventListener("click", )
+var clear = function() {
+    var highScores = [];
+    while (highScoresList) {
+        highScoresList.remove(highScoresList);
+    }
+      localStorage.clear(highScores);
 }
-if (startArea.className = ("show")) {
-    startArea.classList.remove("show");
-    startArea.classList.add("hidden");
-}
-if (questionArea.className = ("show")) {
-    questionArea.classList.remove("show");
-    questionArea.classList.add("hidden");
-}
-if (correctAnswer.className = ("show")) {
-    correctAnswer.classList.remove("show");
-    correctAnswer.classList.add("hidden");
-}
-if (incorrectAnswer.className = ("show")) {
-    incorrectAnswer.classList.remove("show");
-    incorrectAnswer.classList.add("hidden");
-}
-}
+
+startButton.addEventListener("click", starting)
+questionArea.addEventListener("click", handleAnswer)
+// getInitials.addEventListener("submit", boardHighScore)
+// endArea.addEventListener("click", ending)
