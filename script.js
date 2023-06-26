@@ -2,7 +2,7 @@
 var questionArea = document.querySelector(".question-area");
 var startArea = document.querySelector(".start-area");
 var endArea = document.querySelector(".end-area")
-var highScoreArea = document.getElementById("highscore-area")
+var highScoreArea = document.querySelector(".highscore-area")
 // click start button var
 var startButton = document.querySelector(".start-button");
 // timer var
@@ -124,7 +124,9 @@ var starting = function() {
 var ending = function() {
   // endArea.innerHTML = "";
   endArea.style.display = "none";
+    saveScore();
     displayScore();
+    showHighScore();
     boardHighScore();
 }
 
