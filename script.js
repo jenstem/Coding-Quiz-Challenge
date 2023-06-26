@@ -306,5 +306,5 @@ var clear = function() {
 startButton.addEventListener("click", starting)
 questionArea.addEventListener("click", handleAnswer)
 // intBtn.addEventListener('click', saveScore)
-// getInitials.addEventListener("submit", boardHighScore)
+getInitials.addEventListener("submit", boardHighScore)
 // endArea.addEventListener("click", ending)
