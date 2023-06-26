@@ -242,15 +242,21 @@ var boardHighScore = function() {
 //     localStorage.setItem("highScores", JSON.stringify(highScores))
 // }
 
-function saveScore() {
-  // console.log(highScores);
+function saveScore(event) {
+  event.preventDefault()
   var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
+  console.log(highScores,"Highscore");
       var newScore = {
         score: gameTimer,
         initials: getInitials,
       };
       highScores.push(newScore);
     localStorage.setItem("highScores", JSON.stringify(highScores))
+    for (let index = 0; index < highScores.length; index++) {
+      var nowHighScore = document.createElement("li");
+      nowHighScore.className = ".nowHighScore";
+
+  }
 }
 
 intBtn.addEventListener('click', saveScore)
