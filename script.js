@@ -91,15 +91,20 @@ var fiveQuestions = [{
     "d. // Comment"],
     correctAnswer: "d. // Comment"}
 ];
+var timerTime = null;
+
+var stopTimer = function() {
+  clearInterval(timerTime);
+}
 
 // timer function - does startTime need to be above line 92?
 var startTime = function() {
     timerCount = 60;
-var timerTime = setInterval(function() {
+    timerTime = setInterval(function() {
     timerCountEl.textContent = timerCount;
       timerCount--
     if (timerCount === -1) {
-      clearInterval(timerTime)}
+      stopTimer();}
     // if (timerCount < 0) {
     //   score()
     //   timerCount.innerText = 0
@@ -116,6 +121,12 @@ var starting = function() {
     displayQuestions();
 }
 
+// var ending = function() {
+//   // endArea.style.display = "none";
+//     displayScore();
+//     boardHighScore();
+// }
+
 // when to show correct and incorrect - not sure  set display to none and then change
 
 // var answerCorrect = function() {
@@ -130,6 +141,7 @@ var starting = function() {
 
 var maybeAnswer = function(e) {
   var selectedOption = e.target
+  console.log(selectedOption, correctAnswer);
     if (correctAnswer === selectedOption) {
       answerCorrect()
       score = score + 4
@@ -141,6 +153,12 @@ var maybeAnswer = function(e) {
     }
 };
 
+// decrease timer incorrect answer X
+// timer needs to stop when quiz ends X
+// display something that let's user know quiz has ended
+// populate get initials
+// populate high score
+// display incorrect/correct
 
 // display questions one at a time - not sure on this
 // var displayQuestions = function() {
@@ -168,13 +186,23 @@ var displayQuestions = function() {
 var handleAnswer = function(e) {
   if (e.target.tagName === "BUTTON") {
     if (e.target.textContent === fiveQuestions[questionIndex].correctAnswer) {
+        score = score + 4
         console.log("correct");
     } else {
+        score = score - 4;
+        timerCount = timerCount - 15;
         console.log("incorrect");
 
     }
     questionIndex++;
-    displayQuestions();
+    if (questionIndex === fiveQuestions.length) {
+      console.log("end quiz");
+      stopTimer();
+      // ending();
+    } else {
+      displayQuestions();
+    }
+    // displayQuestions();
   }
 }
 
