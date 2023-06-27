@@ -1,6 +1,4 @@
-// play around with hidden and different elements
-
-// variables
+// Variables
 var questionArea = document.querySelector(".question-area");
 var startArea = document.querySelector(".start-area");
 var endArea = document.querySelector(".end-area")
