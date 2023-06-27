@@ -1,9 +1,10 @@
 // Variables
+// Areas
 var questionArea = document.querySelector(".question-area");
 var startArea = document.querySelector(".start-area");
 var endArea = document.querySelector(".end-area")
 var highScoreArea = document.querySelector(".highscore-area")
-// click start button var
+// Click start button var
 var startButton = document.querySelector(".start-button");
 // timer var
 var gameTimer = document.querySelector(".game-timer");
