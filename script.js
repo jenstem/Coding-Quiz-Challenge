@@ -1,9 +1,10 @@
+// play around with hidden and different elements
+
 // variables
 var questionArea = document.querySelector(".question-area");
 var startArea = document.querySelector(".start-area");
 var endArea = document.querySelector(".end-area")
 var highScoreArea = document.querySelector(".highscore-area")
-highScoreArea.style.display = "none"
 // click start button var
 var startButton = document.querySelector(".start-button");
 // timer var
@@ -37,165 +38,137 @@ var submitButton = document.querySelector(".submit-button");
 
 var gameTimer = 0;
 var score = 0;
-// do I need timerCount and gameTimer?
 var timerCountEl = document.querySelector("#game-timer");
 var endOfGame;
-// do I need both of these for highscore?
 var highScoresArr = [];
-var highScoresList = [];
 var questionIndex = 0;
 
 // variable for questions
 
 var fiveQuestions = [{
 
-    question: "Commonly used data types DO NOT include:",
-    options:[
+  question: "Commonly used data types DO NOT include:",
+  options: [
     "a. strings",
     "b. booleans",
     "c. alerts",
     "d. numbers"],
-    correctAnswer: "c. alerts"},
+  correctAnswer: "c. alerts"
+},
 
 {
-    question: "The condition in an if / else statement is enclosed within ____.",
-    options:[
-     "a. quotes",
+  question: "The condition in an if / else statement is enclosed within ____.",
+  options: [
+    "a. quotes",
     "b. curly brackets",
     "c. parentheses",
     "d. square brackets"],
-    correctAnswer: "b. curly brackets"},
+  correctAnswer: "b. curly brackets"
+},
 
 {
-    question: "Which HTML element can we put our JavaScript?",
-    options:[
+  question: "Which HTML element can we put our JavaScript?",
+  options: [
     "a. <header>",
     "b. <footer>",
     "c. <div>",
     "d. <script>"],
-    correctAnswer: "d. <script>"},
+  correctAnswer: "d. <script>"
+},
 
 {
-    question: "Using JavaScript, how would you create a function?",
-    options:[
+  question: "Using JavaScript, how would you create a function?",
+  options: [
     "a. function.myFunction()",
     "b. function = myFunction()",
     "c. function = Myfunction()",
     "d. function callMyFunction()"],
-    correctAnswer: "b. function = myFunction()"},
+  correctAnswer: "b. function = myFunction()"
+},
 
 {
-    question: "How should you leave a comment in a JavaScript file?",
-    options:[
+  question: "How should you leave a comment in a JavaScript file?",
+  options: [
     "a. <comment>",
     "b. Comment",
     "c. <!--Comment-->",
     "d. // Comment"],
-    correctAnswer: "d. // Comment"}
+  correctAnswer: "d. // Comment"
+}
 ];
 var timerTime = null;
 
-var stopTimer = function() {
+var stopTimer = function () {
   clearInterval(timerTime);
 }
 
-// timer function - does startTime need to be above line 92?
-var startTime = function() {
-    timerCount = 60;
-    timerTime = setInterval(function() {
+// timer function
+var startTime = function () {
+  timerCount = 60;
+  timerTime = setInterval(function () {
     timerCountEl.textContent = timerCount;
-      timerCount--
+    timerCount--
     if (timerCount === -1) {
-      stopTimer();}
-    // if (timerCount < 0) {
-    //   score()
-    //   timerCount.innerText = 0
-    //   clearInterval(timerTime)
-    // }
-
-    }, 1000)
+      clearInterval(timerTime);
+      getHighScores();
+    }
+    if (questionIndex > fiveQuestions.length) {
+      clearInterval(timerTime);
+      getHighScores();
+    }
+  }, 1000)
 }
 
-// starting game function - needs work
-var starting = function() {
-    startArea.style.display = "none";
-    startTime();
-    displayQuestions();
+// starting game function
+var starting = function () {
+  startArea.style.display = "none";
+  startTime();
+  displayQuestions();
 }
 
-var ending = function() {
-    // endArea.style.display = "none";
-    // saveScore();
-    displayScore();
-    // showHighScore();
-    // boardHighScore();
+var ending = function () {
+  endArea.style.display = "block";
+  highScoreArea.style.display = "block";
+  displayScore();
 }
 
-// when to show correct and incorrect - not sure  set display to none and then change
 
-// var answerCorrect = function() {
-
-// }
-
-// var answerIncorrect = function() {
-
-// }
-
-// check to see if answer is correct - why is correctAnswer wrong?
-
-var maybeAnswer = function(e) {
+var maybeAnswer = function (e) {
   var selectedOption = e.target
   console.log(selectedOption, correctAnswer);
-    if (correctAnswer === selectedOption) {
-      answerCorrect()
-      score = score + 4
-    }
-    else {
-        answerIncorrect()
-        score = score - 4;
-        timerCount = timerCount - 15;
-    }
+  if (correctAnswer === selectedOption) {
+    answerCorrect()
+    score = score + 4
+  }
+  else {
+    answerIncorrect()
+    score = score - 4;
+    timerCount = timerCount - 15;
+  }
 };
 
-// decrease timer incorrect answer X
-// timer needs to stop when quiz ends X
-// display something that let's user know quiz has ended
-// populate get initials
-// populate high score
-// display incorrect/correct
-
-// display questions one at a time - not sure on this
-// var displayQuestions = function() {
-//     askQuestion = index.fiveQuestions
-//     for (let index = 0; index < fiveQuestions.length; index++) {
-//         var answerButton = fiveQuestions[index]
-//         answerButton.addEventListener("click", maybeAnswer);
-//     }
-// }
-// }
-
-var displayQuestions = function() {
-    questionArea.innerHTML = "";
+var displayQuestions = function () {
+  questionArea.innerHTML = "";
   var questionEl = document.createElement("p");
-   questionEl.textContent = fiveQuestions[questionIndex].question;
-    questionArea.append(questionEl);
-      for (let index = 0; index < fiveQuestions[questionIndex].options.length; index++) {
-        var choiceButton = document.createElement("button");
-          choiceButton.style.display = "block";
-          choiceButton.textContent = fiveQuestions[questionIndex].options[index];
-          questionArea.append(choiceButton);
-    }
+  questionEl.textContent = fiveQuestions[questionIndex].question;
+  questionArea.append(questionEl);
+  for (let index = 0; index < fiveQuestions[questionIndex].options.length; index++) {
+    var choiceButton = document.createElement("button");
+    choiceButton.style.display = "block";
+    choiceButton.textContent = fiveQuestions[questionIndex].options[index];
+    questionArea.append(choiceButton);
+  }
 }
 
-var handleAnswer = function(e) {
+var handleAnswer = function (e) {
   if (e.target.tagName === "BUTTON") {
     if (e.target.textContent === fiveQuestions[questionIndex].correctAnswer) {
-        score = score + 4
-        console.log("correct");
+      score = score + 4
+      console.log("correct");
     } else {
-        score = score - 4;
-        timerCount = timerCount - 15;
-        console.log("incorrect");
+      score = score - 4;
+      timerCount = timerCount - 15;
+      console.log("incorrect");
 
     }
     questionIndex++;
@@ -208,109 +181,78 @@ var handleAnswer = function(e) {
     } else {
       displayQuestions();
     }
-    // displayQuestions();
   }
 }
 
-
-// doesn't know when program is over, tell it to stop
-
-// when it hits 5, end it, end of array or time = 0, QI = length of array - stop 175, 176
-
-// keeping score
-
 // display score
-var displayScore = function() {
-    var scoreBoard = document.createElement("p");
-      scoreBoard.textContent = ("All done! Your final score is " + score + ".");
-      userAnswer.append(scoreBoard);
+var displayScore = function () {
+  var scoreBoard = document.createElement("p");
+  scoreBoard.textContent = ("All done! Your final score is " + score + ".");
+  userAnswer.append(scoreBoard);
 }
 // highscores
 highScores.addEventListener("click", displayHighScores)
-var boardHighScore = function() {
-    var usersInitials = document.querySelector(".initials").value;
-      // if (!usersInitials) {
-      //   window.alert("Please enter your initials:");
-        // return;
-      }
+var boardHighScore = function () {
+  var usersInitials = document.querySelector(".initials").value;
+}
 
-// doesn't kow when program is over, tell it to stop
-// submit - submit to high-score-area?
-// getInitials.addEventListener("submit", )
+var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
 
-// var saveScore = function() {
-//     localStorage.setItem("highScores", JSON.stringify(highScores))
-// }
-
-function saveScore(event) {
-  event.preventDefault()
-  var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
-  console.log(highScores,"Highscore");
-      var newScore = {
-        score: gameTimer,
-        initials: getInitials,
-      };
-      highScores.push(newScore);
-    localStorage.setItem("highScores", JSON.stringify(highScores))
-    for (let index = 0; index < highScores.length; index++) {
-      var nowHighScore = document.createElement("li");
-      nowHighScore.className = ".nowHighScore";
-
+function getHighScores() {
+  highScoreArea.classList.remove(".hidden");
+  highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
+  for (let index = 0; index < highScores.length; index++) {
+    var nowHighScore = document.createElement("li");
+    nowHighScore.textContent = highScores[index].score;
+    highScoresList.append(nowHighScore);
   }
 }
 
-intBtn.addEventListener('click', saveScore)
+  function saveScore(event) {
+    event.preventDefault()
+    var newScore = {
+      score: score,
+      initials: getInitials.value,
+    };
+
+    highScores.push(newScore);
+    console.log(highScores);
+    localStorage.setItem("highScores", JSON.stringify(highScores))
+    getHighScores();
+  }
 
 
-// put highscores in order
-//  highScoresList.push(highScores);
-// //  highScoresList.sort(a, b);
-//  while (highScores.append) {
-//     highScores.remove(highScores.index(0));
-//  }
+  intBtn.addEventListener('click', saveScore)
 
-//  addHighScore();
-//  boardHighScore();
+  highScores.forEach(function (a, b) {
+    return b.score - a.score;
+  });
 
-//  var addHighScore = function() {
-//     localStorage.setItem("highScores", JSON.stringify(highScores))
-//  }
-
- function showHighScore() {
-    var showingHighScore = localStorage.getItem("highScores");
-    if (!showingHighScore) {
-        return false;
+  function showHighScore() {
+    for (var index = 0; index < highScores.length; index++) {
+      var nowHighScore = document.createElement("li");
+      nowHighScore.textContent = highScores[index];
     }
-
-    showingHighScore = JSON.parse(showHighScore);
-    showingHighScore.sort(a, b);
-    for (let index = 0; index < showingHighScore.length; index++) {
-        var nowHighScore = document.createElement("li");
-        nowHighScore.className = ".nowHighScore";
+  }
 
 
-    }
-}
-// at some point you need to end the game - maybe this?
-var displayHighScores = function() {
+  // End the Game
+  var displayHighScores = function () {
     endOfGame = "true"
-}
+  }
 
-// go back - needs work - go back to start-area?
-goBackButton.addEventListener("click", starting)
+  // Go back button event listener
+  goBackButton.addEventListener("click", starting)
 
-// clear highscores - needs work
-// clearScoresButton.addEventListener("click", )
-var clear = function() {
+  // clear highscores
+  var clear = function () {
     var highScores = [];
     while (highScoresList) {
-        highScoresList.remove(highScoresList);
+      highScoresList.remove(highScoresList);
     }
-      localStorage.clear(highScores);
-}
+    localStorage.clear(highScores);
+  }
 
-startButton.addEventListener("click", starting)
-questionArea.addEventListener("click", handleAnswer)
-// intBtn.addEventListener('click', saveScore)
-getInitials.addEventListener("submit", boardHighScore)
-// endArea.addEventListener("click", ending)
+  startButton.addEventListener("click", starting)
+  questionArea.addEventListener("click", handleAnswer)
+  getInitials.addEventListener("submit", boardHighScore)
