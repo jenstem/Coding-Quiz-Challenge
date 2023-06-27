@@ -16,7 +16,7 @@ var userAnswer = document.querySelector(".user-answer");
 var answerButton = document.querySelector(".answer-button");
 // Incorrect answer var
 var incorrectAnswer = document.querySelector(".incorrect");
-// correct answer var
+// Correct answer var
 var correctAnswer = document.querySelector(".correct");
 // end of game var
 var endGame = document.querySelector(".end-game");
