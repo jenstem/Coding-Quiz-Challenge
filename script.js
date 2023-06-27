@@ -18,7 +18,7 @@ var answerButton = document.querySelector(".answer-button");
 var incorrectAnswer = document.querySelector(".incorrect");
 // Correct answer var
 var correctAnswer = document.querySelector(".correct");
-// end of game var
+// End of game var
 var endGame = document.querySelector(".end-game");
 // initials var
 var getInitials = document.querySelector(".get-initials");
