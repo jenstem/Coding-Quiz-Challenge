@@ -6,7 +6,7 @@ var endArea = document.querySelector(".end-area")
 var highScoreArea = document.querySelector(".highscore-area")
 // Click start button var
 var startButton = document.querySelector(".start-button");
-// timer var
+// Timer var
 var gameTimer = document.querySelector(".game-timer");
 // question var
 var askQuestion = document.querySelector(".ask-question");
