@@ -35,7 +35,7 @@ THEN I can save my initials and score
 ##
 
 ![](https://github.com/jenstem/Coding-Quiz-Challenge/blob/main/images/question.png)
-                              *This is a screenshot of one of the questions and possible answers*
+*This is a screenshot of one of the questions and possible answers*
 ##
 
 ![](https://github.com/jenstem/Coding-Quiz-Challenge/blob/main/images/initialspage.png)
