@@ -199,12 +199,13 @@ var boardHighScore = function () {
 
 var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
 
+// Read highscores from local storage and then use a loop to display them
 function getHighScores() {
   highScoreArea.classList.remove(".hidden");
   highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
   for (let index = 0; index < highScores.length; index++) {
     var nowHighScore = document.createElement("li");
-    nowHighScore.textContent = highScores[index].score;
+    nowHighScore.textContent = highScores[index].initials + highScores[index].score;
     highScoresList.append(nowHighScore);
   }
 }
@@ -242,14 +243,11 @@ function getHighScores() {
     endOfGame = "true"
   }
 
-  // Go back button event listener
-  goBackButton.addEventListener("click", starting)
-
   // clear highscores
   var clear = function () {
     var highScores = [];
-    while (highScoresList) {
-      highScoresList.remove(highScoresList);
+    while (highScoresList.firstChild) {
+      highScoresList.removeChild(highScoresList.firstChild);
     }
     localStorage.clear(highScores);
   }
@@ -257,3 +255,4 @@ function getHighScores() {
   startButton.addEventListener("click", starting)
   questionArea.addEventListener("click", handleAnswer)
   getInitials.addEventListener("submit", boardHighScore)
+  goBackButton.addEventListener("click", starting)
