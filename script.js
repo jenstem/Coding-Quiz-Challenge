@@ -8,7 +8,7 @@ var highScoreArea = document.querySelector(".highscore-area")
 var startButton = document.querySelector(".start-button");
 // Timer var
 var gameTimer = document.querySelector(".game-timer");
-// question var
+// Question var
 var askQuestion = document.querySelector(".ask-question");
 // answer var
 var userAnswer = document.querySelector(".user-answer");
