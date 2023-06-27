@@ -23,7 +23,7 @@ var endGame = document.querySelector(".end-game");
 // Initials var
 var getInitials = document.querySelector(".get-initials");
 var intBtn = document.querySelector(".int-button");
-// highscores var - do I need both of these?
+// Highscores var
 var highScoresList = document.querySelector(".high-score-list")
 var highScores = document.querySelector(".highscores");
 // go back button
