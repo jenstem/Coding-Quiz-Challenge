@@ -1,6 +1,6 @@
 ## Coding Quiz Challenge
 
-Click [here](https://jenstem.github.io/Password-Generator/) to see the website.
+Click [here](https://jenstem.github.io/Coding-Quiz-Challenge/) to see the website.
 
 ## Description
 
