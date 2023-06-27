@@ -18,7 +18,7 @@ var answerButton = document.querySelector(".answer-button");
 var incorrectAnswer = document.querySelector(".incorrect");
 // Correct answer var
 var correctAnswer = document.querySelector(".correct");
-// End of game var
+// End of quiz var
 var endGame = document.querySelector(".end-game");
 // Initials var
 var getInitials = document.querySelector(".get-initials");
@@ -102,7 +102,7 @@ var stopTimer = function () {
   clearInterval(timerTime);
 }
 
-// timer function
+// Timer function
 var startTime = function () {
   timerCount = 60;
   timerTime = setInterval(function () {
@@ -119,20 +119,23 @@ var startTime = function () {
   }, 1000)
 }
 
-// starting game function
+// Starting quiz function
 var starting = function () {
   startArea.style.display = "none";
   startTime();
   displayQuestions();
 }
 
+// Ending the quiz
 var ending = function () {
   endArea.style.display = "block";
   highScoreArea.style.display = "block";
   displayScore();
 }
 
-
+// Check to see if answer is correct or not
+// Add points for correct answer
+// Minus points and time for incorrect answer
 var maybeAnswer = function (e) {
   var selectedOption = e.target
   console.log(selectedOption, correctAnswer);
@@ -147,6 +150,7 @@ var maybeAnswer = function (e) {
   }
 };
 
+// Display questions
 var displayQuestions = function () {
   questionArea.innerHTML = "";
   var questionEl = document.createElement("p");
@@ -160,6 +164,8 @@ var displayQuestions = function () {
   }
 }
 
+// Checking the answer
+// Determine if the quiz should end or continue
 var handleAnswer = function (e) {
   if (e.target.tagName === "BUTTON") {
     if (e.target.textContent === fiveQuestions[questionIndex].correctAnswer) {
@@ -184,13 +190,13 @@ var handleAnswer = function (e) {
   }
 }
 
-// display score
+// Display score
 var displayScore = function () {
   var scoreBoard = document.createElement("p");
   scoreBoard.textContent = ("All done! Your final score is " + score + ".");
   userAnswer.append(scoreBoard);
 }
-// highscores
+// Highscores
 highScores.addEventListener("click", displayHighScores)
 var boardHighScore = function () {
   var usersInitials = document.querySelector(".initials").value;
@@ -225,10 +231,12 @@ function getHighScores() {
 
   intBtn.addEventListener('click', saveScore)
 
+  // Sort the highscores
   highScores.forEach(function (a, b) {
     return b.score - a.score;
   });
 
+  // Add the highscore
   function showHighScore() {
     for (var index = 0; index < highScores.length; index++) {
       var nowHighScore = document.createElement("li");
@@ -237,12 +245,12 @@ function getHighScores() {
   }
 
 
-  // End the Game
+  // End the quiz
   var displayHighScores = function () {
     endOfGame = "true"
   }
 
-  // clear highscores
+  // Clear highscores
   function clearOut() {
     btnClearScoresEl.addEventListener("click", function () {
         localStorage.clear();
