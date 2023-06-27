@@ -20,7 +20,7 @@ var incorrectAnswer = document.querySelector(".incorrect");
 var correctAnswer = document.querySelector(".correct");
 // End of game var
 var endGame = document.querySelector(".end-game");
-// initials var
+// Initials var
 var getInitials = document.querySelector(".get-initials");
 var intBtn = document.querySelector(".int-button");
 // highscores var - do I need both of these?
