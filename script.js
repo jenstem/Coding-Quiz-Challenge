@@ -96,6 +96,7 @@ var fiveQuestions = [{
   correctAnswer: "d. // Comment"
 }
 ];
+
 var timerTime = null;
 
 var stopTimer = function () {
