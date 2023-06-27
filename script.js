@@ -244,13 +244,10 @@ function getHighScores() {
   }
 
   // clear highscores
-  var clear = function () {
-    var highScores = [];
-    while (highScoresList.firstChild) {
-      highScoresList.removeChild(highScoresList.firstChild);
-    }
-    localStorage.clear(highScores);
-  }
+  function clearOut() {
+    btnClearScoresEl.addEventListener("click", function () {
+        localStorage.clear();
+    })};
 
   startButton.addEventListener("click", starting)
   questionArea.addEventListener("click", handleAnswer)
