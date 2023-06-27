@@ -31,19 +31,19 @@ THEN I can save my initials and score
 ## Screenshots:
 
 ![](https://github.com/jenstem/Coding-Quiz-Challenge/blob/main/images/startpage.png)
-*This is a screenshot of the start page*
+    *This is a screenshot of the start page*
 ##
 
 ![](https://github.com/jenstem/Coding-Quiz-Challenge/blob/main/images/question.png)
-*This is a screenshot of one of the questions and possible answers*
+    *This is a screenshot of one of the questions and possible answers*
 ##
 
 ![](https://github.com/jenstem/Coding-Quiz-Challenge/blob/main/images/initialspage.png)
-*This is a screenshot of where you enter your initials*
+    *This is a screenshot of where you enter your initials*
 ##
 
 ![](https://github.com/jenstem/Coding-Quiz-Challenge/blob/main/images/highscore.png)
-*This is a screenshot of the high scores*
+    *This is a screenshot of the high scores*
 ##
 
 ## Notes:
