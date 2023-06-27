@@ -14,7 +14,7 @@ var askQuestion = document.querySelector(".ask-question");
 var userAnswer = document.querySelector(".user-answer");
 // Answer buttons
 var answerButton = document.querySelector(".answer-button");
-// incorrect answer var
+// Incorrect answer var
 var incorrectAnswer = document.querySelector(".incorrect");
 // correct answer var
 var correctAnswer = document.querySelector(".correct");
