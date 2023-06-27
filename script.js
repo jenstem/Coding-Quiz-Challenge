@@ -12,7 +12,7 @@ var gameTimer = document.querySelector(".game-timer");
 var askQuestion = document.querySelector(".ask-question");
 // Answer var
 var userAnswer = document.querySelector(".user-answer");
-// answer buttons
+// Answer buttons
 var answerButton = document.querySelector(".answer-button");
 // incorrect answer var
 var incorrectAnswer = document.querySelector(".incorrect");
