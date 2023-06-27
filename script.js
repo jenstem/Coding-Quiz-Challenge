@@ -26,14 +26,14 @@ var intBtn = document.querySelector(".int-button");
 // Highscores var
 var highScoresList = document.querySelector(".high-score-list")
 var highScores = document.querySelector(".highscores");
-// go back button
+// Go back button
 var goBackButton = document.querySelector(".goback-button");
-// clear scores button
+// Clear scores button
 var clearScoresButton = document.querySelector(".clear-scores");
-// submit button
+// Submit button
 var submitButton = document.querySelector(".submit-button");
 
-// other variables
+// Other variables
 
 var gameTimer = 0;
 var score = 0;
@@ -42,7 +42,7 @@ var endOfGame;
 var highScoresArr = [];
 var questionIndex = 0;
 
-// variable for questions
+// Variable for questions
 
 var fiveQuestions = [{
 
